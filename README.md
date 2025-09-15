@@ -2,27 +2,15 @@
 
 **High-Impact Retail Forecasting & Inventory Project**  
 
-This project demonstrates **end-to-end forecasting and inventory planning** for a retail store, combining **classical time series methods**, **machine learning models**, and **business-driven decision logic**.  
+This project demonstrates end-to-end forecasting and inventory planning for a retail store, combining classical time series methods, machine learning models, and business-driven decision logic.  
 
 ---
 
 ## 🔹 Project Overview
 
-Retail businesses need **accurate demand forecasts** to:
+Retail businesses need accurate demand forecasts to prevent stockouts, reduce excess inventory, plan promotions, and allocate inventory efficiently across stores. This project predicts weekly sales for a department in a store and translates forecasts into actionable inventory decisions.
 
-- Prevent stockouts  
-- Reduce excess inventory  
-- Plan promotions  
-- Allocate inventory efficiently across stores  
-
-This project predicts weekly sales for a department in a store and translates forecasts into actionable **inventory decisions**.
-
-**Dataset:** Weekly sales data enriched with:  
-
-- Lagged sales features  
-- Rolling statistics (mean, std)  
-- Date features (week, month, quarter, year)  
-- Holiday flags  
+**Dataset:** Weekly sales data enriched with lagged sales features, rolling statistics (mean, std), date features (week, month, quarter, year), and holiday flags.  
 
 ---
 
@@ -30,25 +18,25 @@ This project predicts weekly sales for a department in a store and translates fo
 
 | Step | Notebook | Description |
 |------|----------|-------------|
-| 1 | `01_eda.ipynb` | Exploratory analysis: trends, seasonality, volatility, decomposition |
-| 2 | `01_eda.ipynb` | Stationarity check & transformations (log, differencing) |
-| 3 | `02_feature_engineering.ipynb` | Feature engineering: lag features, rolling stats, date and holiday features |
-| 4 | `03_modeling.ipynb` | Train/test split & baseline models (Naive, Seasonal Naive) |
-| 5 | `03_modeling.ipynb` | Classical models: ARIMA & SARIMA |
-| 6 | `03_modeling.ipynb` | ML models: Random Forest, Gradient Boosting |
-| 7 | `03_modeling.ipynb` | Model comparison: MAE, residuals, stability |
-| 8 | `04_inventory_decisions.ipynb` | Translate forecasts into inventory recommendations & safety stock |
-| 9 | `05_project_summary.ipynb` | Project wrap-up, key insights, visualizations, lessons learned |
+| 1 | 01_eda.ipynb | Exploratory analysis: trends, seasonality, volatility, decomposition |
+| 2 | 01_eda.ipynb | Stationarity check & transformations (log, differencing) |
+| 3 | 02_feature_engineering.ipynb | Feature engineering: lag features, rolling stats, date and holiday features |
+| 4 | 03_modeling.ipynb | Train/test split & baseline models (Naive, Seasonal Naive) |
+| 5 | 03_modeling.ipynb | Classical models: ARIMA & SARIMA |
+| 6 | 03_modeling.ipynb | ML models: Random Forest, Gradient Boosting |
+| 7 | 03_modeling.ipynb | Model comparison: MAE, residuals, stability |
+| 8 | 04_inventory_decisions.ipynb | Translate forecasts into inventory recommendations & safety stock |
+| 9 | 05_project_summary.ipynb | Project wrap-up, key insights, visualizations, lessons learned |
 
 ---
 
 ## 🔹 Key Features
 
-- **Lag & Rolling Features:** Capture short- and medium-term trends  
-- **Date Features:** Week of year, month, quarter, year  
-- **Holiday Indicators:** Handle spikes due to promotions/holidays  
-- **Safety Stock:** Residual-based risk buffer for inventory planning  
-- **Model Comparison:** Classical vs ML models for best performance  
+- Lag & Rolling Features: capture short- and medium-term trends  
+- Date Features: week of year, month, quarter, year  
+- Holiday Indicators: handle spikes due to promotions/holidays  
+- Safety Stock: residual-based risk buffer for inventory planning  
+- Model Comparison: classical vs ML models for best performance  
 
 ---
 
@@ -65,25 +53,17 @@ This project predicts weekly sales for a department in a store and translates fo
 | Random Forest | 2100 |
 | Gradient Boosting | 2200 |
 
-> Random Forest had the **lowest MAE** and stable residuals → chosen as final forecasting model.  
+Random Forest had the lowest MAE and stable residuals → chosen as final forecasting model.  
 
 ---
 
 ## 🔹 Residual Analysis
 
-**Random Forest Residuals:**  
+Random Forest Residuals: ![Random Forest Residuals](./outputs/figures/Random_Forest_residuals.png)  
+ARIMA Residuals: ![ARIMA Residuals](./outputs/figures/ARIMA_residuals.png)  
+Gradient Boosting Residuals: ![Gradient Boosting Residuals](./outputs/figures/Gradient_Boosting_residuals.png)  
 
-![Random Forest Residuals](./outputs/figures/Random\ Forest_residuals.png)  
-
-**ARIMA Residuals:**  
-
-![ARIMA Residuals](./outputs/figures/ARIMA_residuals.png)  
-
-**Gradient Boosting Residuals:**  
-
-![Gradient Boosting Residuals](./outputs/figures/Gradient Boosting_residuals.png) 
-
-> Residuals highlight periods of under-forecasting (risk of stockout) and over-forecasting (risk of overstock).  
+Residuals highlight periods of under-forecasting (risk of stockout) and over-forecasting (risk of overstock).  
 
 ---
 
@@ -91,29 +71,25 @@ This project predicts weekly sales for a department in a store and translates fo
 
 ![Forecast vs Inventory](./outputs/figures/forecast_vs_inventory.png)  
 
-- Orange band shows **safety stock**  
-- Dashed line shows **recommended inventory**  
+- Orange band shows safety stock  
+- Dashed line shows recommended inventory  
 - Ensures ~95% service level while limiting overstock  
 
 ---
 
 ## 🔹 Inventory Decision Logic
 
-- **Recommended Inventory** = Forecast + Safety Stock  
-- Safety Stock calculated as:  
+Recommended Inventory = Forecast + Safety Stock  
 
-```text
-Safety Stock = Z * Std(Residuals)
-Z = 1.65 (95% service level)
+Safety Stock calculated as: Safety Stock = Z * Std(Residuals), where Z = 1.65 (95% service level)  
 
-# Risk Flags
-
-- **under_forecast_risk** → forecast < actual sales  
-- **over_forecast_risk** → inventory > 120% of actual  
+Risk Flags:  
+- under_forecast_risk → forecast < actual sales  
+- over_forecast_risk → inventory > 120% of actual  
 
 ---
 
-# Lessons Learned
+## 🔹 Lessons Learned
 
 - Classical models are interpretable but miss non-linear patterns  
 - ML models capture complex relationships with lag, rolling, and date features  
@@ -122,32 +98,35 @@ Z = 1.65 (95% service level)
 
 ---
 
-# Next Steps / Enhancements
+## 🔹 Next Steps / Enhancements
 
 - Expand to all departments and stores  
 - Include promotions, marketing, and weather data  
 - Automate weekly forecast updates in a Streamlit dashboard or Power BI  
-- Explore ensemble ML models for improved accuracy 
+- Explore ensemble ML models for improved accuracy  
 
-# File Structure
+---
 
-project_root/
-├─ data/
-│ ├─ raw/
-│ └─ processed/
-├─ notebooks/
-│ ├─ 01_eda.ipynb
-│ ├─ 02_feature_engineering.ipynb
-│ ├─ 03_modeling.ipynb
-│ ├─ 04_inventory_decisions.ipynb
-├─ outputs/
-│ ├─ figures/
-│ │ ├─ Random Forest_residuals.png
-│ │ ├─ ARIMA_residuals.png
-│ │ ├─ Gradient boosting_residuals.png
-│ │ └─ forecast_vs_inventory.png
-│ ├─ ml_forecasts.csv
-│ ├─ inventory_recommendations.csv
-│ └─ final_model_comparison.csv
-├─ README.md
+## 🔹 File Structure
 
+project_root/  
+├─ data/  
+│  ├─ raw/  
+│  └─ processed/  
+├─ notebooks/  
+│  ├─ 01_eda.ipynb  
+│  ├─ 02_feature_engineering.ipynb  
+│  ├─ 03_modeling.ipynb  
+│  ├─ 04_inventory_decisions.ipynb  
+│  └─ 05_project_summary.ipynb  
+├─ outputs/  
+│  ├─ figures/  
+│  │  ├─ Random_Forest_residuals.png  
+│  │  ├─ ARIMA_residuals.png  
+│  │  ├─ Gradient_Boosting_residuals.png  
+│  │  └─ forecast_vs_inventory.png  
+│  ├─ ml_forecasts.csv  
+│  ├─ inventory_recommendations.csv  
+│  └─ final_model_comparison.csv  
+├─ README.md  
+└─ requirements.txt
