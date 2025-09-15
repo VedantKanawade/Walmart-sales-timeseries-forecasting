@@ -2,7 +2,7 @@
 
 **High-Impact Retail Forecasting & Inventory Project**  
 
-This project demonstrates end-to-end forecasting and inventory planning for a retail store, combining classical time series methods, machine learning models, and business-driven decision logic.  
+This project demonstrates end-to-end forecasting and inventory planning for a Walmart retail store, combining classical time series methods, machine learning models, and business-driven decision logic.  
 
 ---
 
