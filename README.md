@@ -26,7 +26,7 @@ Retail businesses need accurate demand forecasts to prevent stockouts, reduce ex
 | 6 | 03_modeling.ipynb | ML models: Random Forest, Gradient Boosting |
 | 7 | 03_modeling.ipynb | Model comparison: MAE, residuals, stability |
 | 8 | 04_inventory_decisions.ipynb | Translate forecasts into inventory recommendations & safety stock |
-| 9 | 05_project_summary.ipynb | Project wrap-up, key insights, visualizations, lessons learned |
+
 
 ---
 
@@ -46,14 +46,14 @@ Retail businesses need accurate demand forecasts to prevent stockouts, reduce ex
 
 | Model | MAE |
 |-------|-----|
-| Naive | 3500 |
-| Seasonal Naive | 3200 |
-| ARIMA | 2900 |
-| SARIMA | 2800 |
-| Random Forest | 2100 |
-| Gradient Boosting | 2200 |
+| Naive | 3413 |
+| ARIMA | 3022 |
+| Seasonal Naive | 1456 |
+| SARIMA | 1176 |
+| Random Forest | 168 |
+| Gradient Boosting | 124 |
 
-Random Forest had the lowest MAE and stable residuals → chosen as final forecasting model.  
+Gradient Boosting had the lowest MAE and stable residuals and thus chosen as final forecasting model.  
 
 ---
 
@@ -106,27 +106,3 @@ Risk Flags:
 - Explore ensemble ML models for improved accuracy  
 
 ---
-
-## 🔹 File Structure
-
-project_root/  
-├─ data/  
-│  ├─ raw/  
-│  └─ processed/  
-├─ notebooks/  
-│  ├─ 01_eda.ipynb  
-│  ├─ 02_feature_engineering.ipynb  
-│  ├─ 03_modeling.ipynb  
-│  ├─ 04_inventory_decisions.ipynb  
-│  └─ 05_project_summary.ipynb  
-├─ outputs/  
-│  ├─ figures/  
-│  │  ├─ Random_Forest_residuals.png  
-│  │  ├─ ARIMA_residuals.png  
-│  │  ├─ Gradient_Boosting_residuals.png  
-│  │  └─ forecast_vs_inventory.png  
-│  ├─ ml_forecasts.csv  
-│  ├─ inventory_recommendations.csv  
-│  └─ final_model_comparison.csv  
-├─ README.md  
-└─ requirements.txt
